@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Maximiliano Almiron\\source\\repos\\MemoTest\\MemoTest\\MemoTest.vbproj",
+      "projectUniqueName": "C:\\Users\\Maximiliano Almiron\\source\\proyecto-programacion-visual\\MemoTest\\MemoTest\\MemoTest.vbproj",
       "projectName": "MemoTest",
-      "projectPath": "C:\\Users\\Maximiliano Almiron\\source\\repos\\MemoTest\\MemoTest\\MemoTest.vbproj",
+      "projectPath": "C:\\Users\\Maximiliano Almiron\\source\\proyecto-programacion-visual\\MemoTest\\MemoTest\\MemoTest.vbproj",
       "packagesPath": "C:\\Users\\Maximiliano Almiron\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Maximiliano Almiron\\source\\repos\\MemoTest\\MemoTest\\obj\\",
+      "outputPath": "C:\\Users\\Maximiliano Almiron\\source\\proyecto-programacion-visual\\MemoTest\\MemoTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Maximiliano Almiron\\AppData\\Roaming\\NuGet\\NuGet.Config",
