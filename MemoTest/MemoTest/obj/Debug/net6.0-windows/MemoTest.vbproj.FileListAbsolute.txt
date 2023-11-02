@@ -20,7 +20,6 @@ C:\Users\Maximiliano Almiron\source\proyecto-programacion-visual\MemoTest\MemoTe
 C:\Users\Maximiliano Almiron\source\proyecto-programacion-visual\MemoTest\MemoTest\bin\Debug\net6.0-windows\MemoTest.runtimeconfig.json
 C:\Users\Maximiliano Almiron\source\proyecto-programacion-visual\MemoTest\MemoTest\bin\Debug\net6.0-windows\MemoTest.dll
 C:\Users\Maximiliano Almiron\source\proyecto-programacion-visual\MemoTest\MemoTest\bin\Debug\net6.0-windows\MemoTest.pdb
-C:\Users\Maximiliano Almiron\source\proyecto-programacion-visual\MemoTest\MemoTest\obj\Debug\net6.0-windows\MemoTest.Form1.resources
 C:\Users\Maximiliano Almiron\source\proyecto-programacion-visual\MemoTest\MemoTest\obj\Debug\net6.0-windows\MemoTest.Resources.resources
 C:\Users\Maximiliano Almiron\source\proyecto-programacion-visual\MemoTest\MemoTest\obj\Debug\net6.0-windows\MemoTest.vbproj.GenerateResource.cache
 C:\Users\Maximiliano Almiron\source\proyecto-programacion-visual\MemoTest\MemoTest\obj\Debug\net6.0-windows\MemoTest.GeneratedMSBuildEditorConfig.editorconfig
@@ -32,3 +31,8 @@ C:\Users\Maximiliano Almiron\source\proyecto-programacion-visual\MemoTest\MemoTe
 C:\Users\Maximiliano Almiron\source\proyecto-programacion-visual\MemoTest\MemoTest\obj\Debug\net6.0-windows\MemoTest.pdb
 C:\Users\Maximiliano Almiron\source\proyecto-programacion-visual\MemoTest\MemoTest\obj\Debug\net6.0-windows\MemoTest.genruntimeconfig.cache
 C:\Users\Maximiliano Almiron\source\proyecto-programacion-visual\MemoTest\MemoTest\obj\Debug\net6.0-windows\ref\MemoTest.dll
+C:\Users\Maximiliano Almiron\source\proyecto-programacion-visual\MemoTest\MemoTest\obj\Debug\net6.0-windows\MemoTest.CreditosForm.resources
+C:\Users\Maximiliano Almiron\source\proyecto-programacion-visual\MemoTest\MemoTest\obj\Debug\net6.0-windows\MemoTest.GanasteForm.resources
+C:\Users\Maximiliano Almiron\source\proyecto-programacion-visual\MemoTest\MemoTest\obj\Debug\net6.0-windows\MemoTest.InicioForm.resources
+C:\Users\Maximiliano Almiron\source\proyecto-programacion-visual\MemoTest\MemoTest\obj\Debug\net6.0-windows\MemoTest.InstruccionesForm.resources
+C:\Users\Maximiliano Almiron\source\proyecto-programacion-visual\MemoTest\MemoTest\obj\Debug\net6.0-windows\MemoTest.PartidaForm.resources

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class PartidaForm
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -25,10 +25,7 @@ Partial Class Form1
         components = New ComponentModel.Container()
         Label1 = New Label()
         Timer1 = New Timer(components)
-        Label2 = New Label()
-        Label3 = New Label()
-        Label4 = New Label()
-        Button1 = New Button()
+        TimerLbl = New Label()
         Panel1 = New Panel()
         PictureBox13 = New PictureBox()
         PictureBox14 = New PictureBox()
@@ -46,6 +43,9 @@ Partial Class Form1
         PictureBox3 = New PictureBox()
         PictureBox2 = New PictureBox()
         PictureBox1 = New PictureBox()
+        ComenzarBtn = New Button()
+        mejorTiempoLbl = New Label()
+        Label3 = New Label()
         Panel1.SuspendLayout()
         CType(PictureBox13, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox14, ComponentModel.ISupportInitialize).BeginInit()
@@ -70,61 +70,34 @@ Partial Class Form1
         Label1.AutoSize = True
         Label1.BackColor = Color.Cyan
         Label1.BorderStyle = BorderStyle.FixedSingle
-        Label1.Font = New Font("Segoe Print", 16F, FontStyle.Bold, GraphicsUnit.Point)
+        Label1.Font = New Font("Ink Free", 17.9999981F, FontStyle.Bold, GraphicsUnit.Point)
         Label1.ForeColor = SystemColors.ControlText
-        Label1.Location = New Point(124, 9)
+        Label1.Location = New Point(120, 9)
         Label1.Name = "Label1"
-        Label1.Size = New Size(441, 59)
+        Label1.Size = New Size(449, 47)
         Label1.TabIndex = 16
         Label1.Text = "JUEGO DE LA MEMORIA"
         Label1.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Label2
+        ' Timer1
         ' 
-        Label2.AutoSize = True
-        Label2.BackColor = SystemColors.ButtonHighlight
-        Label2.Location = New Point(308, 619)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(115, 25)
-        Label2.TabIndex = 18
-        Label2.Text = "31 segundos"
-        Label2.UseMnemonic = False
         ' 
-        ' Label3
+        ' TimerLbl
         ' 
-        Label3.AutoSize = True
-        Label3.BackColor = SystemColors.ButtonHighlight
-        Label3.Location = New Point(23, 661)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(140, 25)
-        Label3.TabIndex = 34
-        Label3.Text = "MEJOR TIEMPO:"
-        ' 
-        ' Label4
-        ' 
-        Label4.AutoSize = True
-        Label4.BackColor = SystemColors.HighlightText
-        Label4.Location = New Point(168, 661)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(125, 25)
-        Label4.TabIndex = 35
-        Label4.Text = "123 segundos"
-        Label4.TextAlign = ContentAlignment.TopCenter
-        ' 
-        ' Button1
-        ' 
-        Button1.Cursor = Cursors.Hand
-        Button1.Location = New Point(308, 570)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(112, 34)
-        Button1.TabIndex = 17
-        Button1.Text = "JUGAR!"
-        Button1.UseVisualStyleBackColor = True
-        Button1.Visible = False
+        TimerLbl.AutoSize = True
+        TimerLbl.BackColor = SystemColors.ButtonHighlight
+        TimerLbl.Font = New Font("Segoe Print", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        TimerLbl.Location = New Point(295, 599)
+        TimerLbl.Name = "TimerLbl"
+        TimerLbl.Size = New Size(79, 42)
+        TimerLbl.TabIndex = 18
+        TimerLbl.Text = "0:00"
+        TimerLbl.UseMnemonic = False
         ' 
         ' Panel1
         ' 
         Panel1.BackColor = Color.Cyan
+        Panel1.BorderStyle = BorderStyle.FixedSingle
         Panel1.Controls.Add(PictureBox13)
         Panel1.Controls.Add(PictureBox14)
         Panel1.Controls.Add(PictureBox15)
@@ -143,7 +116,7 @@ Partial Class Form1
         Panel1.Controls.Add(PictureBox1)
         Panel1.Location = New Point(37, 74)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(612, 490)
+        Panel1.Size = New Size(603, 503)
         Panel1.TabIndex = 36
         ' 
         ' PictureBox13
@@ -152,7 +125,7 @@ Partial Class Form1
         PictureBox13.BorderStyle = BorderStyle.FixedSingle
         PictureBox13.Cursor = Cursors.Hand
         PictureBox13.Image = My.Resources.Resources.question
-        PictureBox13.Location = New Point(442, 374)
+        PictureBox13.Location = New Point(430, 380)
         PictureBox13.Name = "PictureBox13"
         PictureBox13.Size = New Size(101, 103)
         PictureBox13.TabIndex = 49
@@ -164,7 +137,7 @@ Partial Class Form1
         PictureBox14.BorderStyle = BorderStyle.FixedSingle
         PictureBox14.Cursor = Cursors.Hand
         PictureBox14.Image = My.Resources.Resources.question
-        PictureBox14.Location = New Point(324, 374)
+        PictureBox14.Location = New Point(310, 380)
         PictureBox14.Name = "PictureBox14"
         PictureBox14.Size = New Size(101, 103)
         PictureBox14.TabIndex = 48
@@ -176,7 +149,7 @@ Partial Class Form1
         PictureBox15.BorderStyle = BorderStyle.FixedSingle
         PictureBox15.Cursor = Cursors.Hand
         PictureBox15.Image = My.Resources.Resources.question
-        PictureBox15.Location = New Point(207, 374)
+        PictureBox15.Location = New Point(190, 380)
         PictureBox15.Name = "PictureBox15"
         PictureBox15.Size = New Size(101, 103)
         PictureBox15.TabIndex = 47
@@ -188,7 +161,7 @@ Partial Class Form1
         PictureBox16.BorderStyle = BorderStyle.FixedSingle
         PictureBox16.Cursor = Cursors.Hand
         PictureBox16.Image = My.Resources.Resources.question
-        PictureBox16.Location = New Point(87, 374)
+        PictureBox16.Location = New Point(70, 380)
         PictureBox16.Name = "PictureBox16"
         PictureBox16.Size = New Size(101, 103)
         PictureBox16.TabIndex = 46
@@ -200,7 +173,7 @@ Partial Class Form1
         PictureBox9.BorderStyle = BorderStyle.FixedSingle
         PictureBox9.Cursor = Cursors.Hand
         PictureBox9.Image = My.Resources.Resources.question
-        PictureBox9.Location = New Point(442, 254)
+        PictureBox9.Location = New Point(430, 260)
         PictureBox9.Name = "PictureBox9"
         PictureBox9.Size = New Size(101, 103)
         PictureBox9.TabIndex = 45
@@ -212,7 +185,7 @@ Partial Class Form1
         PictureBox10.BorderStyle = BorderStyle.FixedSingle
         PictureBox10.Cursor = Cursors.Hand
         PictureBox10.Image = My.Resources.Resources.question
-        PictureBox10.Location = New Point(324, 254)
+        PictureBox10.Location = New Point(310, 260)
         PictureBox10.Name = "PictureBox10"
         PictureBox10.Size = New Size(101, 103)
         PictureBox10.TabIndex = 44
@@ -224,7 +197,7 @@ Partial Class Form1
         PictureBox11.BorderStyle = BorderStyle.FixedSingle
         PictureBox11.Cursor = Cursors.Hand
         PictureBox11.Image = My.Resources.Resources.question
-        PictureBox11.Location = New Point(207, 254)
+        PictureBox11.Location = New Point(190, 260)
         PictureBox11.Name = "PictureBox11"
         PictureBox11.Size = New Size(101, 103)
         PictureBox11.TabIndex = 43
@@ -236,7 +209,7 @@ Partial Class Form1
         PictureBox12.BorderStyle = BorderStyle.FixedSingle
         PictureBox12.Cursor = Cursors.Hand
         PictureBox12.Image = My.Resources.Resources.question
-        PictureBox12.Location = New Point(87, 254)
+        PictureBox12.Location = New Point(70, 260)
         PictureBox12.Name = "PictureBox12"
         PictureBox12.Size = New Size(101, 103)
         PictureBox12.TabIndex = 42
@@ -247,13 +220,12 @@ Partial Class Form1
         PictureBox5.BackColor = SystemColors.ButtonHighlight
         PictureBox5.BorderStyle = BorderStyle.FixedSingle
         PictureBox5.Cursor = Cursors.Hand
-        PictureBox5.Image = My.Resources.Resources.strawberry
-        PictureBox5.Location = New Point(442, 135)
+        PictureBox5.Image = My.Resources.Resources.question
+        PictureBox5.Location = New Point(430, 140)
         PictureBox5.Name = "PictureBox5"
         PictureBox5.Size = New Size(101, 103)
         PictureBox5.TabIndex = 41
         PictureBox5.TabStop = False
-        PictureBox5.Visible = False
         ' 
         ' PictureBox6
         ' 
@@ -261,7 +233,7 @@ Partial Class Form1
         PictureBox6.BorderStyle = BorderStyle.FixedSingle
         PictureBox6.Cursor = Cursors.Hand
         PictureBox6.Image = My.Resources.Resources.question
-        PictureBox6.Location = New Point(324, 135)
+        PictureBox6.Location = New Point(310, 140)
         PictureBox6.Name = "PictureBox6"
         PictureBox6.Size = New Size(101, 103)
         PictureBox6.TabIndex = 40
@@ -273,7 +245,7 @@ Partial Class Form1
         PictureBox7.BorderStyle = BorderStyle.FixedSingle
         PictureBox7.Cursor = Cursors.Hand
         PictureBox7.Image = My.Resources.Resources.question
-        PictureBox7.Location = New Point(207, 135)
+        PictureBox7.Location = New Point(190, 140)
         PictureBox7.Name = "PictureBox7"
         PictureBox7.Size = New Size(101, 103)
         PictureBox7.TabIndex = 39
@@ -285,7 +257,7 @@ Partial Class Form1
         PictureBox8.BorderStyle = BorderStyle.FixedSingle
         PictureBox8.Cursor = Cursors.Hand
         PictureBox8.Image = My.Resources.Resources.question
-        PictureBox8.Location = New Point(87, 135)
+        PictureBox8.Location = New Point(70, 140)
         PictureBox8.Name = "PictureBox8"
         PictureBox8.Size = New Size(101, 103)
         PictureBox8.TabIndex = 38
@@ -297,7 +269,7 @@ Partial Class Form1
         PictureBox4.BorderStyle = BorderStyle.FixedSingle
         PictureBox4.Cursor = Cursors.Hand
         PictureBox4.Image = My.Resources.Resources.question
-        PictureBox4.Location = New Point(442, 15)
+        PictureBox4.Location = New Point(430, 20)
         PictureBox4.Name = "PictureBox4"
         PictureBox4.Size = New Size(101, 103)
         PictureBox4.TabIndex = 37
@@ -309,7 +281,7 @@ Partial Class Form1
         PictureBox3.BorderStyle = BorderStyle.FixedSingle
         PictureBox3.Cursor = Cursors.Hand
         PictureBox3.Image = My.Resources.Resources.question
-        PictureBox3.Location = New Point(324, 15)
+        PictureBox3.Location = New Point(310, 20)
         PictureBox3.Name = "PictureBox3"
         PictureBox3.Size = New Size(101, 103)
         PictureBox3.TabIndex = 36
@@ -317,16 +289,15 @@ Partial Class Form1
         ' 
         ' PictureBox2
         ' 
-        PictureBox2.BackColor = SystemColors.ButtonHighlight
+        PictureBox2.BackColor = SystemColors.ControlLightLight
         PictureBox2.BorderStyle = BorderStyle.FixedSingle
         PictureBox2.Cursor = Cursors.Hand
-        PictureBox2.Image = My.Resources.Resources.strawberry
-        PictureBox2.Location = New Point(207, 15)
+        PictureBox2.Image = My.Resources.Resources.question
+        PictureBox2.Location = New Point(190, 20)
         PictureBox2.Name = "PictureBox2"
         PictureBox2.Size = New Size(101, 103)
         PictureBox2.TabIndex = 35
         PictureBox2.TabStop = False
-        PictureBox2.Visible = False
         ' 
         ' PictureBox1
         ' 
@@ -334,26 +305,66 @@ Partial Class Form1
         PictureBox1.BorderStyle = BorderStyle.FixedSingle
         PictureBox1.Cursor = Cursors.Hand
         PictureBox1.Image = My.Resources.Resources.question
-        PictureBox1.Location = New Point(87, 15)
+        PictureBox1.Location = New Point(70, 20)
         PictureBox1.Name = "PictureBox1"
         PictureBox1.Size = New Size(101, 103)
         PictureBox1.TabIndex = 34
         PictureBox1.TabStop = False
+        PictureBox1.Tag = ""
         ' 
-        ' Form1
+        ' ComenzarBtn
+        ' 
+        ComenzarBtn.BackColor = Color.SpringGreen
+        ComenzarBtn.Cursor = Cursors.Hand
+        ComenzarBtn.Font = New Font("Ink Free", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        ComenzarBtn.Location = New Point(173, 591)
+        ComenzarBtn.Name = "ComenzarBtn"
+        ComenzarBtn.Size = New Size(317, 62)
+        ComenzarBtn.TabIndex = 37
+        ComenzarBtn.Text = "COMENZAR"
+        ComenzarBtn.UseVisualStyleBackColor = False
+        ' 
+        ' mejorTiempoLbl
+        ' 
+        mejorTiempoLbl.AutoSize = True
+        mejorTiempoLbl.BackColor = Color.BlueViolet
+        mejorTiempoLbl.Font = New Font("Segoe Print", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        mejorTiempoLbl.ForeColor = Color.Cyan
+        mejorTiempoLbl.Location = New Point(416, 675)
+        mejorTiempoLbl.Name = "mejorTiempoLbl"
+        mejorTiempoLbl.Size = New Size(33, 42)
+        mejorTiempoLbl.TabIndex = 35
+        mejorTiempoLbl.Text = "-"
+        mejorTiempoLbl.TextAlign = ContentAlignment.TopCenter
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.BackColor = Color.Cyan
+        Label3.Cursor = Cursors.IBeam
+        Label3.Font = New Font("Segoe Print", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        Label3.ForeColor = SystemColors.ControlText
+        Label3.Location = New Point(173, 675)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(224, 42)
+        Label3.TabIndex = 34
+        Label3.Text = "MEJOR TIEMPO:"
+        ' 
+        ' PartidaForm
         ' 
         AutoScaleDimensions = New SizeF(10F, 25F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = SystemColors.ActiveCaption
-        ClientSize = New Size(709, 709)
+        ClientSize = New Size(683, 737)
+        Controls.Add(ComenzarBtn)
         Controls.Add(Panel1)
-        Controls.Add(Label4)
+        Controls.Add(mejorTiempoLbl)
         Controls.Add(Label3)
-        Controls.Add(Label2)
-        Controls.Add(Button1)
+        Controls.Add(TimerLbl)
         Controls.Add(Label1)
-        Name = "Form1"
-        Text = "Form1"
+        ForeColor = SystemColors.ControlText
+        Name = "PartidaForm"
+        Text = "Partida"
         Panel1.ResumeLayout(False)
         CType(PictureBox13, ComponentModel.ISupportInitialize).EndInit()
         CType(PictureBox14, ComponentModel.ISupportInitialize).EndInit()
@@ -376,10 +387,7 @@ Partial Class Form1
     End Sub
     Friend WithEvents Label1 As Label
     Friend WithEvents Timer1 As Timer
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Button1 As Button
+    Friend WithEvents TimerLbl As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents PictureBox13 As PictureBox
     Friend WithEvents PictureBox14 As PictureBox
@@ -397,4 +405,7 @@ Partial Class Form1
     Friend WithEvents PictureBox3 As PictureBox
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents ComenzarBtn As Button
+    Friend WithEvents mejorTiempoLbl As Label
+    Friend WithEvents Label3 As Label
 End Class
