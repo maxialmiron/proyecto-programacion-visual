@@ -11,24 +11,72 @@ Public Class PartidaForm
     Dim cerrarFormSinPreguntar As Boolean = False
     Dim mejorTiempo As Integer = 0
 
-    Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub PartidaForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         iniciarDatos()
         loaded = True
     End Sub
 
+    'Reinicia las variables a sus valores por defecto
+    'carga imagenes
+    Public Sub iniciarDatos()
+        segundosTranscurridos = 0
+        totalBoxSeleccionadas = 0
+        listaDeImagenes.Clear()
+        cargarImagenes()
+        ComenzarBtn.Visible = True
+        TimerLbl.Visible = False
+        TimerLbl.Text = 0
+        ultimoSeleccionado = Nothing
+        cerrarFormSinPreguntar = False
+
+        setControls()
+    End Sub
+
+    'Asigna una imagen random del listado a cada caja
+    Private Sub setControls()
+        For Each control As Control In Me.Panel1.Controls
+
+            If TypeOf control Is PictureBox Then
+                Dim pictureBox As PictureBox = DirectCast(control, PictureBox)
+                Dim index As Integer = GenerarNumeroAleatorio(listaDeImagenes.Count)
+                pictureBox.Image = My.Resources.question
+                pictureBox.Visible = True
+                'Guardo en tag un valor real de una imagen random
+                pictureBox.Tag = ExtraerYRemoverItem(index)
+                pictureBox.Enabled = False
+
+                ' le asigno un handler a cada box para no tener que repetirlo
+                ' por cada uno
+                If Not loaded Then
+                    AddHandler pictureBox.Click, AddressOf Box_Click
+                End If
+            End If
+        Next
+    End Sub
+
+    'Esta funcion permite obtener un item de la lista de imagenes
+    'segun el valor enviado como parametro y lo remueve de la lista
+    'para no volver a utlizar esa imagen
+    Private Function ExtraerYRemoverItem(index As Integer) As Image
+        ' valido que el indice este dentro del rango de la lista imagenes
+        If index >= 0 AndAlso index < listaDeImagenes.Count Then
+            ' Extraigo el item en el index especificado
+            Dim item As Image = listaDeImagenes(index)
+            ' Remuevo el item ya asignado
+            listaDeImagenes.RemoveAt(index)
+            Return item
+        End If
+    End Function
+
+    ' Genera un número aleatorio entre la cantidad de imagenes disponibles en la lista
     Private Function GenerarNumeroAleatorio(total As Integer) As Integer
-        ' Crea una instancia de la clase Random
         Dim generadorAleatorio As New Random()
-
-        ' Genera un número aleatorio entre 0 y 16
         Dim numeroAleatorio As Integer = generadorAleatorio.Next(total)
-
-        ' Devuelve el número aleatorio generado
         Return numeroAleatorio
     End Function
 
+    ' Cargo una lista con cada par de imagenes
     Private Sub cargarImagenes()
-
         Dim Orange As Image = My.Resources.orange
         Dim Apple As Image = My.Resources.apple
         Dim Lemon As Image = My.Resources.lemon
@@ -54,20 +102,9 @@ Public Class PartidaForm
         listaDeImagenes.Add(Pineapple)
         listaDeImagenes.Add(Grape)
         listaDeImagenes.Add(Watermelon)
-
     End Sub
 
-    Private Function ExtraerYRemoverItem(index As Integer) As Image
-        ' valido que el indice este dentro del rango de la lista imagenes
-        If index >= 0 AndAlso index < listaDeImagenes.Count Then
-            ' Extraigo el item en el index especificado
-            Dim item As Image = listaDeImagenes(index)
-            ' Remuevo el item ya asignado
-            listaDeImagenes.RemoveAt(index)
-            Return item
-        End If
-    End Function
-
+    'evento que maneja el click en cada caja
     Private Sub Box_Click(sender As Object, e As EventArgs)
         sender.Image = sender.Tag
         If ultimoSeleccionado IsNot Nothing Then
@@ -77,7 +114,7 @@ Public Class PartidaForm
         End If
     End Sub
 
-
+    'habilito o deshabilito todas las cajas segun el flag
     Private Sub habilitarBoxs(enabled As Boolean)
         For Each control As Control In Me.Panel1.Controls
             If TypeOf control Is PictureBox Then
@@ -87,8 +124,11 @@ Public Class PartidaForm
         Next
     End Sub
 
-
+    'compara cada caja con la ultima seleccionada para verificar si
+    'hay coincidencia
     Private Async Sub compararConUltimo(Box As PictureBox)
+
+        'deshabilito para evitar seleccionar una tercer caja
         habilitarBoxs(False)
 
         If ultimoSeleccionado IsNot Nothing Then
@@ -97,6 +137,8 @@ Public Class PartidaForm
                 Box.Visible = False
                 ultimoSeleccionado.Visible = False
                 ultimoSeleccionado = Nothing
+
+                'Sumo cada coincidencia
                 totalBoxSeleccionadas += 1
             Else
                 Await SimularEspera()
@@ -106,9 +148,14 @@ Public Class PartidaForm
             End If
         End If
 
+        'habilito nuevamente todas las cajas disponibles
         habilitarBoxs(True)
 
+        'Si el total de coincidencias es la mitad del total cajas gana el juego
         If totalBoxSeleccionadas = 8 Then
+
+            'guardo el tiempo y lo comparo con el mejor tiempo anterior
+            'si es menor lo reemplaza
             Timer1.Stop()
             If mejorTiempo = 0 Then
                 mejorTiempo = segundosTranscurridos
@@ -123,6 +170,7 @@ Public Class PartidaForm
 
             mejorTiempoLbl.Text = $"{minutos} : {segundos}"
 
+            ' abro el form de juego ganado
             If GanasteForm.ShowDialog() = DialogResult.OK Then
                 iniciarDatos()
             Else
@@ -133,22 +181,36 @@ Public Class PartidaForm
 
     End Sub
 
+    ' esta funcion me permite esperar un tiempo entre la seleccion de la siguiente caja 
+    ' para poder visualizar la imagen contenidad
     Private Async Function SimularEspera() As Task
-        ' Simulate an asynchronous operation (e.g., loading data from a database)
         Await Task.Run(Sub()
                            System.Threading.Thread.Sleep(1000)
                        End Sub)
     End Function
 
+    ' comienza el juego, el tiempo y habilita las cajas
+    Private Sub ComenzarBtn_Click(sender As Object, e As EventArgs) Handles ComenzarBtn.Click
+        Timer1.Interval = 1000
+        Timer1.Start()
+        ComenzarBtn.Visible = False
+        TimerLbl.Visible = True
+
+        habilitarBoxs(True)
+    End Sub
+
+    ' creo un timer para el tiempo transcurrido desde que comienza el juego
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         segundosTranscurridos += 1
 
         Dim minutosTranscurridos As Integer = segundosTranscurridos \ 60
-        Dim segundosRestantes As Integer = segundosTranscurridos Mod 60
+        Dim segundos As Integer = segundosTranscurridos Mod 60
 
-        TimerLbl.Text = $"{minutosTranscurridos} : {segundosRestantes}"
+        TimerLbl.Text = $"{minutosTranscurridos} : {segundos}"
+
     End Sub
 
+    ' pregunta al usuario si desea continuar al cerrar el form
     Private Sub Form2_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         If e.CloseReason = CloseReason.UserClosing And Not cerrarFormSinPreguntar Then
 
@@ -160,44 +222,5 @@ Public Class PartidaForm
         End If
     End Sub
 
-    Private Sub ComenzarBtn_Click(sender As Object, e As EventArgs) Handles ComenzarBtn.Click
-        Timer1.Interval = 1000
-        Timer1.Start()
-        ComenzarBtn.Visible = False
-        TimerLbl.Visible = True
-
-        habilitarBoxs(True)
-    End Sub
-
-    Public Sub iniciarDatos()
-        segundosTranscurridos = 0
-        totalBoxSeleccionadas = 0
-        listaDeImagenes.Clear()
-        cargarImagenes()
-        ComenzarBtn.Visible = True
-        TimerLbl.Visible = False
-        TimerLbl.Text = 0
-        ultimoSeleccionado = Nothing
-        cerrarFormSinPreguntar = False
-
-        setControls()
-    End Sub
-
-    Private Sub setControls()
-        For Each control As Control In Me.Panel1.Controls
-
-            If TypeOf control Is PictureBox Then
-                Dim pictureBox As PictureBox = DirectCast(control, PictureBox)
-                Dim index As Integer = GenerarNumeroAleatorio(listaDeImagenes.Count)
-                pictureBox.Image = My.Resources.question
-                pictureBox.Visible = True
-                pictureBox.Tag = ExtraerYRemoverItem(index)
-                pictureBox.Enabled = False
-                If Not loaded Then
-                    AddHandler pictureBox.Click, AddressOf Box_Click
-                End If
-            End If
-        Next
-    End Sub
 
 End Class

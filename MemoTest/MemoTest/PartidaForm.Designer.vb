@@ -355,7 +355,7 @@ Partial Class PartidaForm
         AutoScaleDimensions = New SizeF(10F, 25F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = SystemColors.ActiveCaption
-        ClientSize = New Size(683, 737)
+        ClientSize = New Size(688, 737)
         Controls.Add(ComenzarBtn)
         Controls.Add(Panel1)
         Controls.Add(mejorTiempoLbl)
@@ -363,6 +363,7 @@ Partial Class PartidaForm
         Controls.Add(TimerLbl)
         Controls.Add(Label1)
         ForeColor = SystemColors.ControlText
+        Location = New Point(100, 100)
         Name = "PartidaForm"
         Text = "Partida"
         Panel1.ResumeLayout(False)

@@ -7,8 +7,9 @@
         InstruccionesForm.ShowDialog()
     End Sub
 
-
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+
+        'Pregunta al usuario si desea iniciar una partida antes de abandonar el juego
         If e.CloseReason = CloseReason.UserClosing Then
             Dim resultado As DialogResult = MessageBox.Show("¿Desea iniciar una partida antes de abandonar el juego?", "Confirmar Cierre", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
@@ -23,4 +24,5 @@
     Private Sub CreditosBtn_Click(sender As Object, e As EventArgs) Handles CreditosBtn.Click
         CreditosForm.Show()
     End Sub
+
 End Class
