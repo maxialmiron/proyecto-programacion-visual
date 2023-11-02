@@ -330,7 +330,7 @@ Partial Class PartidaForm
         mejorTiempoLbl.BackColor = Color.BlueViolet
         mejorTiempoLbl.Font = New Font("Segoe Print", 12F, FontStyle.Regular, GraphicsUnit.Point)
         mejorTiempoLbl.ForeColor = Color.Cyan
-        mejorTiempoLbl.Location = New Point(416, 675)
+        mejorTiempoLbl.Location = New Point(431, 675)
         mejorTiempoLbl.Name = "mejorTiempoLbl"
         mejorTiempoLbl.Size = New Size(33, 42)
         mejorTiempoLbl.TabIndex = 35
@@ -344,7 +344,7 @@ Partial Class PartidaForm
         Label3.Cursor = Cursors.IBeam
         Label3.Font = New Font("Segoe Print", 12F, FontStyle.Regular, GraphicsUnit.Point)
         Label3.ForeColor = SystemColors.ControlText
-        Label3.Location = New Point(173, 675)
+        Label3.Location = New Point(186, 675)
         Label3.Name = "Label3"
         Label3.Size = New Size(224, 42)
         Label3.TabIndex = 34

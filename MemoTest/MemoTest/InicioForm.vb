@@ -11,7 +11,7 @@
 
         'Pregunta al usuario si desea iniciar una partida antes de abandonar el juego
         If e.CloseReason = CloseReason.UserClosing Then
-            Dim resultado As DialogResult = MessageBox.Show("¿Desea iniciar una partida antes de abandonar el juego?", "Confirmar Cierre", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            Dim resultado As DialogResult = MessageBox.Show("¿Desea iniciar una partida antes de abandonar el juego?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
             If resultado = DialogResult.Yes Then
                 PartidaForm.Show()

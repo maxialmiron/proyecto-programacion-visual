@@ -32,20 +32,20 @@ Partial Class InstruccionesForm
         RichTextBox1.BorderStyle = BorderStyle.FixedSingle
         RichTextBox1.Font = New Font("Comic Sans MS", 14F, FontStyle.Bold, GraphicsUnit.Point)
         RichTextBox1.Location = New Point(23, 33)
-        RichTextBox1.Margin = New Padding(4, 3, 3, 3)
+        RichTextBox1.Margin = New Padding(2)
         RichTextBox1.Name = "RichTextBox1"
         RichTextBox1.Size = New Size(756, 322)
         RichTextBox1.TabIndex = 0
         RichTextBox1.Text = resources.GetString("RichTextBox1.Text")
         ' 
-        ' Form3
+        ' InstruccionesForm
         ' 
         AutoScaleDimensions = New SizeF(10F, 25F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = SystemColors.ActiveCaption
         ClientSize = New Size(800, 450)
         Controls.Add(RichTextBox1)
-        Name = "Form3"
+        Name = "InstruccionesForm"
         Text = "Instrucciones"
         ResumeLayout(False)
     End Sub

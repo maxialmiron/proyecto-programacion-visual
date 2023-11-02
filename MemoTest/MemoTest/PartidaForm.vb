@@ -28,11 +28,11 @@ Public Class PartidaForm
         TimerLbl.Text = 0
         ultimoSeleccionado = Nothing
         cerrarFormSinPreguntar = False
-
+        TimerLbl.BackColor = Color.White
         setControls()
     End Sub
 
-    'Asigna una imagen random del listado a cada caja
+    'Asigna una imagen random del listado a cada carta
     Private Sub setControls()
         For Each control As Control In Me.Panel1.Controls
 
@@ -104,7 +104,7 @@ Public Class PartidaForm
         listaDeImagenes.Add(Watermelon)
     End Sub
 
-    'evento que maneja el click en cada caja
+    'evento que maneja el click en cada carta
     Private Sub Box_Click(sender As Object, e As EventArgs)
         sender.Image = sender.Tag
         If ultimoSeleccionado IsNot Nothing Then
@@ -114,7 +114,7 @@ Public Class PartidaForm
         End If
     End Sub
 
-    'habilito o deshabilito todas las cajas segun el flag
+    'habilito o deshabilito todas las cartas segun el flag
     Private Sub habilitarBoxs(enabled As Boolean)
         For Each control As Control In Me.Panel1.Controls
             If TypeOf control Is PictureBox Then
@@ -124,11 +124,11 @@ Public Class PartidaForm
         Next
     End Sub
 
-    'compara cada caja con la ultima seleccionada para verificar si
+    'compara cada carta con la ultima seleccionada para verificar si
     'hay coincidencia
     Private Async Sub compararConUltimo(Box As PictureBox)
 
-        'deshabilito para evitar seleccionar una tercer caja
+        'deshabilito para evitar seleccionar una tercer carta
         habilitarBoxs(False)
 
         If ultimoSeleccionado IsNot Nothing Then
@@ -148,10 +148,10 @@ Public Class PartidaForm
             End If
         End If
 
-        'habilito nuevamente todas las cajas disponibles
+        'habilito nuevamente todas las cartas disponibles
         habilitarBoxs(True)
 
-        'Si el total de coincidencias es la mitad del total cajas gana el juego
+        'Si el total de coincidencias es la mitad del total cartas gana el juego
         If totalBoxSeleccionadas = 8 Then
 
             'guardo el tiempo y lo comparo con el mejor tiempo anterior
@@ -181,7 +181,7 @@ Public Class PartidaForm
 
     End Sub
 
-    ' esta funcion me permite esperar un tiempo entre la seleccion de la siguiente caja 
+    ' esta funcion me permite esperar un tiempo entre la seleccion de la siguiente carta 
     ' para poder visualizar la imagen contenidad
     Private Async Function SimularEspera() As Task
         Await Task.Run(Sub()
@@ -189,7 +189,7 @@ Public Class PartidaForm
                        End Sub)
     End Function
 
-    ' comienza el juego, el tiempo y habilita las cajas
+    ' comienza el juego, el tiempo y habilita las cartas
     Private Sub ComenzarBtn_Click(sender As Object, e As EventArgs) Handles ComenzarBtn.Click
         Timer1.Interval = 1000
         Timer1.Start()
@@ -208,13 +208,29 @@ Public Class PartidaForm
 
         TimerLbl.Text = $"{minutosTranscurridos} : {segundos}"
 
+        If segundosTranscurridos >= 170 Then
+            TimerLbl.BackColor = Color.Red
+        End If
+
+        If segundosTranscurridos >= 180 Then
+            Timer1.Stop()
+            Dim resultado As DialogResult = MessageBox.Show("Se agoto el tiemmpo.¿Desea iniciar otra partida?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+            If resultado = DialogResult.Yes Then
+                iniciarDatos()
+            Else
+                cerrarFormSinPreguntar = True
+                Me.Close()
+            End If
+        End If
+
     End Sub
 
     ' pregunta al usuario si desea continuar al cerrar el form
     Private Sub Form2_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         If e.CloseReason = CloseReason.UserClosing And Not cerrarFormSinPreguntar Then
 
-            Dim resultado As DialogResult = MessageBox.Show("¿Estás seguro de que deseas abandonar la partida?", "Confirmar Cierre", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            Dim resultado As DialogResult = MessageBox.Show("¿Estás seguro de que deseas abandonar la partida?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
             If resultado = DialogResult.No Then
                 e.Cancel = True

@@ -76,11 +76,11 @@ Partial Class InicioForm
         ' CreditosBtn
         ' 
         CreditosBtn.Cursor = Cursors.Hand
-        CreditosBtn.Location = New Point(344, 381)
+        CreditosBtn.Location = New Point(296, 381)
         CreditosBtn.Name = "CreditosBtn"
-        CreditosBtn.Size = New Size(112, 34)
+        CreditosBtn.Size = New Size(216, 34)
         CreditosBtn.TabIndex = 24
-        CreditosBtn.Text = "Créditos"
+        CreditosBtn.Text = "Ver créditos"
         CreditosBtn.UseVisualStyleBackColor = True
         ' 
         ' InicioForm
