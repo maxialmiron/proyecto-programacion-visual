@@ -172,7 +172,7 @@ Public Class PartidaForm
                 End If
             End If
 
-            ´ convierto los segundos transcurridos a minutos y segundos
+            'convierto los segundos transcurridos a minutos y segundos
             Dim minutos As Integer = mejorTiempo \ 60
             Dim segundos As Integer = mejorTiempo Mod 60
 
