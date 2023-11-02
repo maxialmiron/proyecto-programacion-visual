@@ -66,7 +66,7 @@ Partial Class GanasteForm
         NoBtn.Text = "NO"
         NoBtn.UseVisualStyleBackColor = True
         ' 
-        ' Form4
+        ' GanasteForm
         ' 
         AutoScaleDimensions = New SizeF(10F, 25F)
         AutoScaleMode = AutoScaleMode.Font
@@ -76,7 +76,7 @@ Partial Class GanasteForm
         Controls.Add(SiBtn)
         Controls.Add(Label2)
         Controls.Add(PictureBox1)
-        Name = "Form4"
+        Name = "GanasteForm"
         Text = "Ganaste!"
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)

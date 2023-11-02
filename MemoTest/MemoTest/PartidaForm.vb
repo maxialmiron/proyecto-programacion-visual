@@ -11,12 +11,15 @@ Public Class PartidaForm
     Dim cerrarFormSinPreguntar As Boolean = False
     Dim mejorTiempo As Integer = 0
 
+    'evento que llama al cargar el form
     Private Sub PartidaForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         iniciarDatos()
+
+        'flag que se utiliza una vez q se cargo el form para evitar asignar mas de un evento a cada carta
         loaded = True
     End Sub
 
-    'Reinicia las variables a sus valores por defecto
+    'Reinicia las variables a sus valores por defecto para poder jugar una nueva partida
     'carga imagenes
     Public Sub iniciarDatos()
         segundosTranscurridos = 0
@@ -32,21 +35,25 @@ Public Class PartidaForm
         setControls()
     End Sub
 
-    'Asigna una imagen random del listado a cada carta
+    'Asigna una imagen random del listado a cada carta, osea a cada control picturebox
     Private Sub setControls()
         For Each control As Control In Me.Panel1.Controls
 
             If TypeOf control Is PictureBox Then
                 Dim pictureBox As PictureBox = DirectCast(control, PictureBox)
+
+                'obtengo un nro ramdom ,enviando el maximo nro permitido que es la cantidad restante de imagenes'
+                ' a medida q se van extrayendo imagenes el nro decrece
                 Dim index As Integer = GenerarNumeroAleatorio(listaDeImagenes.Count)
                 pictureBox.Image = My.Resources.question
                 pictureBox.Visible = True
-                'Guardo en tag un valor real de una imagen random
+                'Guardo en esta propiedad el valor real de una imagen random
                 pictureBox.Tag = ExtraerYRemoverItem(index)
                 pictureBox.Enabled = False
 
-                ' le asigno un handler a cada box para no tener que repetirlo
-                ' por cada uno
+                ' le asigno la funcion Box_Click a cada carta para no tener que repetirlo por cada una
+                'entonces la misma funcion aplica para todas las cartas
+                'si el formulario ya se cargo no hace falta volver a asignarle la funcion en cada partida
                 If Not loaded Then
                     AddHandler pictureBox.Click, AddressOf Box_Click
                 End If
@@ -68,7 +75,7 @@ Public Class PartidaForm
         End If
     End Function
 
-    ' Genera un número aleatorio entre la cantidad de imagenes disponibles en la lista
+    ' Genera un número aleatorio , el maximo es el nro que se envia como parametro
     Private Function GenerarNumeroAleatorio(total As Integer) As Integer
         Dim generadorAleatorio As New Random()
         Dim numeroAleatorio As Integer = generadorAleatorio.Next(total)
@@ -128,7 +135,7 @@ Public Class PartidaForm
     'hay coincidencia
     Private Async Sub compararConUltimo(Box As PictureBox)
 
-        'deshabilito para evitar seleccionar una tercer carta
+        'deshabilito las cartas para evitar seleccionar una tercera
         habilitarBoxs(False)
 
         If ultimoSeleccionado IsNot Nothing Then
@@ -165,6 +172,7 @@ Public Class PartidaForm
                 End If
             End If
 
+            ´ convierto los segundos transcurridos a minutos y segundos
             Dim minutos As Integer = mejorTiempo \ 60
             Dim segundos As Integer = mejorTiempo Mod 60
 
@@ -181,16 +189,17 @@ Public Class PartidaForm
 
     End Sub
 
-    ' esta funcion me permite esperar un tiempo entre la seleccion de la siguiente carta 
-    ' para poder visualizar la imagen contenidad
+    ' esta funcion me permite esperar un tiempo cuando selecciono la siguiente carta 
+    ' para poder visualizar la imagen contenida
     Private Async Function SimularEspera() As Task
         Await Task.Run(Sub()
                            System.Threading.Thread.Sleep(1000)
                        End Sub)
     End Function
 
-    ' comienza el juego, el tiempo y habilita las cartas
+    ' comienza el juego, corre el tiempo y habilita la seleccion de cartas
     Private Sub ComenzarBtn_Click(sender As Object, e As EventArgs) Handles ComenzarBtn.Click
+        ' se actualiza cada 1 segundo el timer
         Timer1.Interval = 1000
         Timer1.Start()
         ComenzarBtn.Visible = False
@@ -208,13 +217,15 @@ Public Class PartidaForm
 
         TimerLbl.Text = $"{minutosTranscurridos} : {segundos}"
 
+        'si quedan 10 segundos para los 3 minutos se cambia el label del tiempo a rojo
         If segundosTranscurridos >= 170 Then
             TimerLbl.BackColor = Color.Red
         End If
 
+        'si llega a 3 minutos se finaliza la partida y pregunta al usuario y desea iniciar otra
         If segundosTranscurridos >= 180 Then
             Timer1.Stop()
-            Dim resultado As DialogResult = MessageBox.Show("Se agoto el tiemmpo.¿Desea iniciar otra partida?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            Dim resultado As DialogResult = MessageBox.Show("Se agoto el tiempo.¿Desea iniciar otra partida?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
             If resultado = DialogResult.Yes Then
                 iniciarDatos()
@@ -226,7 +237,7 @@ Public Class PartidaForm
 
     End Sub
 
-    ' pregunta al usuario si desea continuar al cerrar el form
+    '  al cerrar el form, pregunta al usuario si desea continuar o abandonar la partida
     Private Sub Form2_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         If e.CloseReason = CloseReason.UserClosing And Not cerrarFormSinPreguntar Then
 
